@@ -44,7 +44,7 @@ void printList(ListNode &l)
 class Solution
 {
 public:
-    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
+    ListNode *addTwoNumbersNaive(ListNode *l1, ListNode *l2)
     {
 
         ListNode *out = new ListNode(0), *p = out;
@@ -64,6 +64,26 @@ public:
 
         return out;
     }
+
+    ListNode *addTwoNumbersOptimized(ListNode *l1, ListNode *l2)
+    {
+
+        ListNode *out = new ListNode(0), *p = out;
+
+        int carry = 0;
+
+        while (l1 || l2 || carry)
+        {
+            int sum = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + carry;
+            carry = (sum / 10);
+            p->next = new ListNode(sum % 10);
+            p = p->next;
+            l1 = l1 ? l1->next : l1;
+            l2 = l2 ? l2->next : l2;
+        }
+
+        return out->next;
+    }
 };
 
 int main()
@@ -80,7 +100,7 @@ int main()
     ;
     addArray(l1, arr, n1);
     addArray(l2, arr2, n2);
-    l3 = sol.addTwoNumbers(&l1, &l2);
+    l3 = sol.addTwoNumbersOptimized(&l1, &l2);
 
     printList(*l3);
     return 0;
