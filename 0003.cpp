@@ -49,6 +49,8 @@ public:
             i = max(i, lastIndex[s[j]] + 1);
             res = max(res, j - i + 1);
             lastIndex[s[j]] = j;
+            cout << j << " " << i << " " << res << endl;
+            j++;
         }
 
         return res;
@@ -57,8 +59,9 @@ public:
 
 int main()
 {
-    string s = "dvdf";
+    string s = "pwwkew";
     Solution sol;
-    cout << sol.lengthOfLongestSubstringNaive(s) << endl;
+    cout << " hi " << endl;
+    cout << sol.lengthOfLongestSubstringOptimized(s) << endl;
     return 0;
 }
