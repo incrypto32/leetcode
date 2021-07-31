@@ -74,6 +74,39 @@ public:
 
         return str;
     }
+
+    string longestPalindromeExpandAroundCenter(string s)
+    {
+
+        int start = 0, end = 0;
+        for (int i = 0; i < s.size(); i++)
+        {
+            int l1 = expandAroundCenter(s, i, i);
+            int l2 = expandAroundCenter(s, i, i + 1);
+            int ml = max(l1, l2);
+            if (ml >= end - start + 1)
+            {
+                end = i + (ml - 1) / 2;
+                start = i + ml / 2;
+            };
+        }
+        return s.substr(start, end - start + 1);
+    }
+
+    int expandAroundCenter(string s, int l, int r)
+    {
+        int res = 0;
+        while (l >= 0 && r < s.size() && s[l] == s[r])
+        {
+
+            res = r - l + 1;
+
+            l--;
+            r++;
+        }
+
+        return res;
+    }
 };
 int main()
 {
