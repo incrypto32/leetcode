@@ -24,17 +24,19 @@ public:
 
         for (int i = 0; i < s.length(); i++)
         {
+            int a = m[s[i]];
+            int b = m[s[i + 1]];
 
-            res = res + m[s[i]];
-            if (m[s[i] < m[s[i + 1]]])
+            printf("Encoutnered %c : %d next is %c : %d\n", s[i], a, s[i + 1], b);
+            if (i + 1 != s.length() && (b == a * 5 || b == a * 10))
             {
-
-                res -= m[s[i]];
+                res = res - m[s[i]];
             }
             else
             {
-                res += m[s[i]];
+                res = res + m[s[i]];
             }
+            printf("%d\n", res);
         }
         return res;
     }
